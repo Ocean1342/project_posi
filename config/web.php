@@ -10,11 +10,19 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@uploads' => '/uploads'
+    ],
+    'modules' => [
+        'system' => [
+            'class' => 'app\modules\system\Module',
+            'defaultRoute' =>'main/index',
+            'layout'=> 'system',
+        ],
     ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '',
+            'cookieValidationKey' => '19dskfjsdf1-09sdflksd;fk3dlfsdlk',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -43,14 +51,14 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];

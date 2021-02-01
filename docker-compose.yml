@@ -7,3 +7,12 @@ services:
       - ./:/app:delegated
     ports:
       - '8000:80'
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: labbit
+      MYSQL_ROOT_PASSWORD: rootlabbit
+      MYSQL_USER: labbit
+      MYSQL_PASSWORD: labbit
+    ports:
+      - 3306:3306
