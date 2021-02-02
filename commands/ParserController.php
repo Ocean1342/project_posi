@@ -28,45 +28,25 @@ class ParserController extends Controller
         $data = $this->baseGenerator();
         $i = 0;
         foreach ($data as $k => $v) {
-            if ($i > 100) break;
+//            if ($i > 100) break;
             $book = new Book();
             $book->attributes = $v;
 //            $this->saveImg($v['thumbnailUrl'],$book);
-            if ($book->save())
+/*            if ($book->save())
                 echo $i, " book loading {$this->en}";
             else
+                echo $i, " book exists (isbn - ".$v['isbn']." ) {$this->en}";*/
+            try{
+                $book->save();
+                echo $i, " book loading {$this->en}";
+            } catch (\Exception $e){
                 echo $i, " book exists (isbn - ".$v['isbn']." ) {$this->en}";
+            }
             $i++;
         }
 
         return 0;
 
-    }
-
-/*    protected function saveImg (string $imgUrl='',Book $modal)
-    {
-        if (strlen($imgUrl) == 0) {
-            $modal->thumbnailUrl =
-            return 'no-image.jpg';;
-        }
-        $imgUrlParse = parse_url($imgUrl);
-        $urlImg = explode('/',$imgUrlParse['path']);
-        $imgName = $urlImg[count($urlImg)-1];
-        $file  = file_get_contents($imgUrl);
-        file_put_contents(\Yii::getAlias('@app').\Yii::getAlias('@uploads').'/'.$imgName, $file);
-        $modal->thumbnailUrl = $imgName;
-//        return $imgName;
-    }*/
-    public function actionImg()
-    {
-        $web = 'test';
-        $imgUrl = 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson.jpg';
-        $imgUrlParse = parse_url($imgUrl);
-        $urlImg = explode('/',$imgUrlParse['path']);
-        $imgName = $urlImg[count($urlImg)-1];
-        $file  = file_get_contents('https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson.jpg');
-        file_put_contents(\Yii::getAlias('@webroot').\Yii::getAlias('@uploads').'/'.$imgName, $file);
-        return $this->render('img', compact('web'));
     }
 
     protected function baseGenerator() {

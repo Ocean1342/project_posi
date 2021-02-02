@@ -7,6 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -17,6 +18,10 @@ $config = [
             'class' => 'app\modules\system\Module',
             'defaultRoute' =>'main/index',
             'layout'=> 'system',
+        ],
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+            'defaultRoute' =>'book/index',
         ],
     ],
     'components' => [
