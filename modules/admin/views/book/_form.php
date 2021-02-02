@@ -27,10 +27,10 @@ use yii\widgets\ActiveForm;
     <?php //=$form->field($model, 'thumbnailUrl')->textInput(['maxlength' => true]) ?>
 
 
-    <?php if ($model->thumbnailUrl !== null): ?>
+    <?php if ($model->thumbnailUrl !== NULL): ?>
         <?= \yii\helpers\BaseHtml::img('@uploads/'. $model->thumbnailUrl,['class'=>'img-responsive']) ?>
     <?php else: ?>
-        Изображения нет
+        Изображение отсутствует. Загрузите его.
     <?php endif ?>
     <?= $form->field($model, 'imageFile')->fileInput() ?>
 

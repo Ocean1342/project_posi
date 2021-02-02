@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Book;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -61,7 +62,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $model = new Book();
+        $books = $model->find()
+            ->where('status="PUBLISH" and (shortDescription!="" OR longDescription!="")')
+            ->limit(12)->asArray()->all();
+        return $this->render('index',compact('books'));
     }
 
     /**
@@ -125,5 +130,10 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    public function actionBook($id)
+    {
+        $book = Book::findOne(['id' => $id]);
+        return $this->render('book',compact('book'));
     }
 }

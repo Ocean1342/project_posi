@@ -113,3 +113,9 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+.main .main__text {
+    min-height: 215px;
+}
+h2.main__head {
+    min-height: 3em;
+}
